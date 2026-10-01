@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function viewPhoto(event) {
+    var image = document.getElementById("photo");
+
+    image.src = URL.createObjectURL(event.target.files[0]);
+    image.style.display = "block"; 
+}
+</script>
+    </script>
+</head>
+<body>
+    <center><h1>Registration page</h1>
+        <table border="0" height="600" width="600>">
+            
+            <tr>
+                <th>Full Name</th>
+                <td><input type="text" placeholder="Full Name"></td>
+            </tr>
+            <tr>
+                <th>Father's Name</th>
+                <td><input type="text" placeholder="Father's Name"></td>
+            </tr>
+            <tr>
+                <th>Mother's Name</th>
+                <td><input type="text" placeholder="Mother's Name>"></td>
+            </tr>
+            <tr>
+                <th>Date of Birth</th>
+                <td><input type="date" ></td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td><input type="radio" >Male
+                <input type="radio" >Female
+                <input type="radio" >Other</td>
+            </tr>
+            <tr>
+                <th>Contact No</th>
+                <td><input type="text" placeholder="+91********"></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="text" placeholder="******@gmail.com"></td>
+
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>
+                    <select>
+                        <option>....................Select..........</option>
+                        <option>Delhi</option>
+                        <option>Agra</option>
+                        <option>Lucknow</option>
+                        <option>Mumbai</option>
+                        <option>Bihar</option>
+                        <option>Azamgarh</option>
+                        <option>Prayagraj</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Course</th>
+                <td>
+                    <input type="checkbox">BCA
+                    <input type="checkbox">MCA
+                    <input type="checkbox">BBA
+                    <input type="checkbox">DCA
+
+                </td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td> <input type="file" accept="image/*"
+           onchange="viewPhoto(event)"><br><br>
+
+    <img id="photo" width="150" height="150"
+         style="display:none;"></td>
+            </tr>
+        </table>
+        <label>
+            FeedBack
+            <textarea id="Feedback" name="feedback" rows="5" cols="40"></textarea><br>
+        </label>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+</body>
+</html>

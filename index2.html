@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <input type="text" id="name">
+   <a href="">
+     <button>click me</button>
+   </a>
+    
+    <p id="result"></p>
+<p> id="demo">Hello</p>
+    <script>
+        let inputBox = document.getElementById("name");
+        let result = document.getElementById("result");
+        inputBox.addEventListener("input", (e) => {
+            // inputBox.addEventListener("change", (e) => {
+            // console.log(e.target.value);
+            result.innerText = e.target.value
+        })
+
+
+
+
+
+let x=document.getElementById("demo");
+console.log(x);
+
+
+</script>
+<a href="https://www.google.com/">
+    <button></button>
+</a>
+<p id="demo">Hello sandeep</p>
+<a href="signup.com"> 
+    <button>sign up</button>
+</a>
+<a href="login.html"> 
+    <button>Login</button>
+</a>
+<a href="">Contact on WhatsApp</a>
+<!-- <a href="https://www.instagram.com/anshu_12.indi?stkn=dmswYTZvcmQ5cDF5"> -->
+    <button>Contact on Insta</button>
+</a>
+<script>
+    let name=document.getElementById("name");
+    let email=document.getElementById("email");
+    let password=document.getElementById("passwoed");
+    let btn=document.getElementByIdtagname("button");
+      let users=[];
+    btn[0].addEventListener("click",()=>{
+    
+            users.push ({name:name.value,password:password.value})
+            name.value="";
+            password.value="";
+        lg(name.value,)
+
+    });
+
+</script>
+</body>
+
+</html>

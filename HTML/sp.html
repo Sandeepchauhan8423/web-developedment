@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDS Tax Challan - Sample</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    background:#ddd;
+    font-size:10px;
+    color:#222;
+}
+
+.page{
+    position:relative;
+    width:210mm;
+    min-height:297mm;
+    margin:20px auto;
+    padding:10mm;
+    background:#fff;
+    border:1px solid #aaa;
+    overflow:hidden;
+}
+
+/* WATERMARK */
+.page:before{
+    content:"SAMPLE - NOT VALID";
+    position:absolute;
+    top:45%;
+    left:10%;
+    transform:rotate(-30deg);
+    font-size:42px;
+    font-weight:bold;
+    color:rgba(150,150,150,.13);
+    pointer-events:none;
+}
+
+/* HEADER */
+.header{
+    height:45px;
+    display:grid;
+    grid-template-columns:90px 1fr 125px;
+    border:1px solid #888;
+}
+
+.challan{
+    padding:6px;
+    border-right:1px solid #888;
+    font-weight:bold;
+}
+
+.heading{
+    text-align:center;
+    padding-top:7px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.heading small{
+    display:block;
+    font-size:8px;
+    font-weight:normal;
+    margin-top:4px;
+}
+
+.year{
+    border-left:1px solid #888;
+    text-align:center;
+    padding-top:7px;
+    font-weight:bold;
+}
+
+/* COMMON */
+.row{
+    display:grid;
+    width:100%;
+}
+
+.border{
+    border:1px solid #888;
+    padding:5px;
+}
+
+.line{
+    border-bottom:1px solid #777;
+    min-height:17px;
+    padding:2px 4px;
+}
+
+.bold{font-weight:bold}
+
+.check{
+    display:inline-flex;
+    width:15px;
+    height:15px;
+    border:1px solid #777;
+    vertical-align:middle;
+    align-items:center;
+    justify-content:center;
+    margin-left:4px;
+}
+
+.checked:after{
+    content:"✓";
+    font-size:13px;
+}
+
+/* TAX */
+.tax{
+    grid-template-columns:28% 57% 15%;
+}
+
+.tax .border{
+    min-height:65px;
+}
+
+/* PAYMENT */
+.payment{
+    grid-template-columns:65% 35%;
+}
+
+.payment-left{
+    border:1px solid #888;
+}
+
+.payment-right{
+    border:1px solid #888;
+    padding:5px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+td,th{
+    border:1px solid #888;
+    padding:4px;
+}
+
+th{
+    background:#f4f4f4;
+    text-align:center;
+}
+
+.right{text-align:right}
+
+/* BANK */
+.bank{
+    height:190px;
+    border:1px solid #888;
+    padding:7px;
+    font-weight:bold;
+}
+
+.amount{
+    text-align:right;
+    font-weight:bold;
+    font-size:11px;
+    padding:7px;
+}
+
+/* WORD */
+.words{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    border:1px solid #888;
+    margin-top:4px;
+}
+
+.words div{
+    padding:5px;
+}
+
+/* NUMBER */
+.number{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    margin-top:4px;
+}
+
+.number div{
+    border:1px solid #888;
+    text-align:center;
+    padding:4px;
+}
+
+.number b{
+    display:block;
+    font-size:8px;
+}
+
+/* SIGN */
+.sign{
+    display:flex;
+    justify-content:space-between;
+    margin-top:20px;
+    align-items:end;
+}
+
+.signline{
+    width:250px;
+    border-top:1px solid #555;
+    text-align:center;
+    padding-top:3px;
+}
+
+/* COUNTERFOIL */
+.counter{
+    margin-top:8px;
+    border-top:2px dotted #555;
+    padding-top:7px;
+}
+
+.counter-title{
+    text-align:center;
+    font-weight:bold;
+    font-size:12px;
+    margin-bottom:5px;
+}
+
+.counter-grid{
+    display:grid;
+    grid-template-columns:1fr 170px;
+}
+
+.counter-main{
+    border:1px solid #888;
+}
+
+.counter-bank{
+    border:1px solid #888;
+    min-height:150px;
+    padding:8px;
+    font-weight:bold;
+}
+
+.counter-main table{
+    height:150px;
+}
+
+.footer{
+    text-align:right;
+    font-weight:bold;
+    font-size:12px;
+    padding:5px;
+}
+
+/* PRINT */
+@media print{
+    body{
+        background:white;
+    }
+
+    .page{
+        margin:0;
+        border:none;
+        width:210mm;
+        min-height:297mm;
+    }
+
+    @page{
+        size:A4;
+        margin:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<!-- HEADER -->
+<div class="header">
+
+    <div class="challan">
+        CHALLAN<br>
+        No./ ITNS
+        <br><br>
+        <b>281</b>
+    </div>
+
+    <div class="heading">
+        T.D.S. TAX CHALLAN
+        <small>Single Copy (To be sent to ZAO)</small>
+    </div>
+
+    <div class="year">
+        Assessment Year
+        <br><br>
+        2025-26
+    </div>
+
+</div>
+
+
+<!-- TAX APPLICABLE -->
+<div class="row tax">
+
+    <div class="border">
+        <b>Tax Applicable (Tick one)*</b>
+    </div>
+
+    <div class="border">
+        <b>TAX DEDUCTED AT SOURCE FROM</b>
+        <br><br>
+
+        (0020) COMPANY DEDUCTEES
+        <span class="check"></span>
+
+        &nbsp;&nbsp;
+
+        (0021) NON-COMPANY DEDUCTEES
+        <span class="check checked"></span>
+    </div>
+
+    <div class="border"></div>
+
+</div>
+
+
+<!-- TAN -->
+<div class="border">
+    <b>Tax Deduction Account No. (T.A.N.)</b>
+    <div class="line">DEL12345E</div>
+</div>
+
+
+<!-- NAME -->
+<div class="border">
+    <b>Full Name</b>
+    <div class="line">LINKEDISKILL LTD</div>
+</div>
+
+
+<!-- ADDRESS -->
+<div class="border">
+    <b>Complete Address with City &amp; State</b>
+    <div class="line">Vibuti Khand, Gomti Nagar, Lucknow</div>
+    <div class="line">Uttar Pradesh</div>
+</div>
+
+
+<!-- PHONE PIN -->
+<div class="row" style="grid-template-columns:65% 35%;">
+
+    <div class="border">
+        Tel. No.
+        <div class="line"></div>
+    </div>
+
+    <div class="border">
+        <b>Pin:</b>
+        <span style="float:right;">226022</span>
+    </div>
+
+</div>
+
+
+<!-- PAYMENT -->
+<div class="payment row">
+
+    <div class="payment-left">
+
+        <div class="border">
+            <b>Type of Payment</b>
+        </div>
+
+        <table>
+            <tr>
+                <td>TDS Payable by Taxpayer</td>
+                <td width="60">(200)</td>
+                <td width="35">
+                    <span class="check checked"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    TDS Regular Assessment
+                    (Raised by I.T. Deptt.)
+                </td>
+                <td>(400)</td>
+                <td>
+                    <span class="check"></span>
+                </td>
+            </tr>
+        </table>
+
+        <div class="border bold">
+            DETAILS OF PAYMENTS
+        </div>
+
+        <table>
+
+            <tr>
+                <td>Income Tax</td>
+                <td class="right"><b>2,710.00</b></td>
+            </tr>
+
+            <tr>
+                <td>Fee under sec. 234E</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Surcharge</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Education Cess</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Interest</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Penalty</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td><b>Total</b></td>
+                <td class="right"><b>2,710.00</b></td>
+            </tr>
+
+        </table>
+
+
+        <div class="words">
+            <div><b>Total (in words):</b></div>
+            <div>Two Thousand Seven Hundred Ten Only.</div>
+        </div>
+
+
+        <div class="number">
+
+            <div>
+                <b>CRORES</b>
+                Zero
+            </div>
+
+            <div>
+                <b>LACS</b>
+                Zero
+            </div>
+
+            <div>
+                <b>THOUSANDS</b>
+                Two
+            </div>
+
+            <div>
+                <b>HUNDREDS</b>
+                Seven
+            </div>
+
+            <div>
+                <b>TENS</b>
+                One
+            </div>
+
+            <div>
+                <b>UNITS</b>
+                Zero
+            </div>
+
+        </div>
+
+
+        <div class="border" style="margin-top:4px;">
+            <b>Paid in Cash / Debit to A/c / Cheque No.</b>
+            <span class="line"
+                  style="display:inline-block;width:120px;"></span>
+
+            <span style="float:right;">
+                Dated <b>1-Apr-24</b>
+            </span>
+        </div>
+
+
+        <div class="border">
+            <b>Drawn on</b>
+            <span class="line"
+                  style="display:inline-block;width:300px;"></span>
+
+            <br>
+            <small>(Name of the Bank and Branch)</small>
+        </div>
+
+
+        <div class="sign">
+            <div>
+                <b>Date:</b> 1-Apr-24
+            </div>
+
+            <div class="signline">
+                Signature of person making payment
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT BANK -->
+    <div class="payment-right">
+
+        <b>Code *</b>
+
+        <span style="
+            border:1px solid #777;
+            padding:3px 12px;
+            margin-left:8px;
+        ">92b</span>
+
+        <br><br>
+
+        <div class="bank">
+            FOR USE IN RECEIVING BANK
+            <br><br>
+
+            Debit to A/c / Cheque credited on
+            <br><br>
+
+            DD &nbsp;&nbsp; MM &nbsp;&nbsp; YY
+            <br><br>
+
+            <div style="margin-top:25px;">
+                SPACE FOR BANK SEAL
+            </div>
+        </div>
+
+        <div class="footer">
+            Rs. 2,710.00
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- COUNTERFOIL -->
+<div class="counter">
+
+    <div class="counter-title">
+        Taxpayers Counterfoil
+        <span style="font-weight:normal;">
+            (To be filled up by taxpayer)
+        </span>
+    </div>
+
+
+    <div class="counter-grid">
+
+        <div class="counter-main">
+
+            <table>
+
+                <tr>
+                    <td width="90">TAN</td>
+                    <td><b>DEL12345E</b></td>
+                </tr>
+
+                <tr>
+                    <td>Received from</td>
+                    <td><b>LINKEDISKILL LTD</b></td>
+                </tr>
+
+                <tr>
+                    <td>Cash/Debit to A/c/Cheque No.</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>For Rs.</td>
+                    <td><b>2,710</b></td>
+                </tr>
+
+                <tr>
+                    <td>Rs. (in words)</td>
+                    <td>
+                        <b>Two Thousand Seven Hundred Ten Only.</b>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Drawn on</td>
+                    <td>
+                        <div class="line"></div>
+                        <small>(Name of the Bank and Branch)</small>
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+
+
+        <div class="counter-bank">
+            SPACE FOR BANK SEAL
+        </div>
+
+    </div>
+
+
+    <div style="
+        text-align:center;
+        font-weight:bold;
+        margin-top:8px;
+    ">
+        Non Company (0021) Deductees
+    </div>
+
+
+    <div style="margin-top:7px;">
+
+        on account of Tax Deducted at Source (TDS)
+        from
+
+        <span style="
+            border:1px solid #777;
+            padding:3px 15px;
+        ">92b</span>
+
+        for the Assessment Year
+
+        <span style="
+            border-bottom:1px solid #777;
+            padding:3px 20px;
+        ">2025-26</span>
+
+    </div>
+
+
+    <div class="footer">
+        Rs. 2,710.00
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>
